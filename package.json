@@ -1,6 +1,6 @@
 {
-  "name": "eosjs-ecc",
-  "version": "4.0.2",
+  "name": "eosjs-crypt",
+  "version": "4.0.3",
   "description": "Elliptic curve cryptography functions",
   "keywords": "ECC, Private Key, Public Key, Signature, AES, Encryption, Decryption",
   "main": "lib/index.js",
@@ -20,8 +20,7 @@
     "documentation": "node_modules/documentation/bin/documentation.js",
     "minimize": "uglifyjs lib/eosjs-ecc.js -o lib/eosjs-ecc.min.js --source-map --compress --mangle",
     "docs": "npm run documentation -- readme src/api_common.js --section \"Common API\" --shallow",
-    "srisum": "npx srisum lib/eosjs-ecc.*",
-    "prepublishOnly": "npm run build_browser && npm run test_lib && npm run minimize && npm run docs && npm run srisum"
+    "srisum": "npx srisum lib/eosjs-ecc.*"
   },
   "repository": {
     "type": "git",
