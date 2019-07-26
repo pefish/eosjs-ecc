@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "pefish-eosjs-ecc",
   "version": "4.0.6",
-=======
-  "name": "eosjs-crypt",
-  "version": "4.0.3",
->>>>>>> 1fbd4c44f082865cf83585087735456856fc724d
   "description": "Elliptic curve cryptography functions",
   "keywords": [
     "ECC",
