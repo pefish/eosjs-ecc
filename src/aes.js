@@ -10,7 +10,8 @@ const Long = ByteBuffer.Long;
 
 module.exports = {
   encrypt,
-  decrypt
+  decrypt,
+  decryptWithoutChecksum
 }
 
 /**
@@ -46,6 +47,10 @@ function encrypt(private_key, public_key, message, nonce = uniqueNonce()) {
 */
 function decrypt(private_key, public_key, nonce, message, checksum) {
     return crypt(private_key, public_key, nonce, message, checksum).message
+}
+
+function decryptWithoutChecksum(private_key, public_key, nonce, message) {
+  return crypt(private_key, public_key, nonce, message, null).message
 }
 
 /**
@@ -101,10 +106,12 @@ function crypt(private_key, public_key, nonce, message, checksum) {
     const cbuf = ByteBuffer.fromBinary(check.toString('binary'), ByteBuffer.DEFAULT_CAPACITY, ByteBuffer.LITTLE_ENDIAN)
     check = cbuf.readUint32()
 
-    if (checksum) {
+    if (checksum !== undefined && checksum !== null) {
         if (check !== checksum)
             throw new Error('Invalid key')
         message = cryptoJsDecrypt(message, key, iv)
+    } else if (checksum === null) {
+      message = cryptoJsDecrypt(message, key, iv)
     } else {
         message = cryptoJsEncrypt(message, key, iv)
     }
